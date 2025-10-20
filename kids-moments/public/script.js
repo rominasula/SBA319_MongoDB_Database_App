@@ -71,6 +71,39 @@ document.getElementById("childForm").addEventListener("submit", async (e) => {
   }
 });
 
+// ------------------------------
+// MOMENTS
+// ------------------------------
+async function fetchMoments() {
+  try {
+    const res = await fetch("/api/moments");
+    const moments = await res.json();
+    momentList.innerHTML = moments
+      .map(m => `<div>${m.title} - Child: ${m.childName} - ${m.description}</div>`)
+      .join("");
+  } catch (err) {
+    console.error("Error fetching moments:", err);
+  }
+}
+
+document.getElementById("momentForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const title = document.getElementById("momentTitle").value;
+  const childName = document.getElementById("momentChild").value;
+  const description = document.getElementById("momentDescription").value;
+
+  try {
+    await fetch("/api/moments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, childName, description })
+    });
+    e.target.reset();
+    fetchMoments();
+  } catch (err) {
+    console.error("Error adding moment:", err);
+  }
+});
 
 // ------------------------------
 // INITIAL LOAD
