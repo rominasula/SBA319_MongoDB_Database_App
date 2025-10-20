@@ -1,8 +1,7 @@
 // ------------------------------
 // CONFIG
 // ------------------------------
-const API_BASE = "http://localhost:5000/api"; // Change port if your backend uses a different one
-
+const API_BASE = "http://localhost:5000/api"; 
 // DOM elements
 const teacherList = document.getElementById("teacherList");
 const childList = document.getElementById("childList");
@@ -125,4 +124,3 @@ document.getElementById("momentForm").addEventListener("submit", async (e) => {
 fetchTeachers();
 fetchChildren();
 fetchMoments();
-  
