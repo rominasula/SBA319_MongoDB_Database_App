@@ -6,7 +6,6 @@ const teacherSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
       match: /.+\@.+\..+/,
     },
     classroom: { type: String, required: true },
@@ -16,4 +15,7 @@ const teacherSchema = new mongoose.Schema(
 
 teacherSchema.index({ email: 1 }, { unique: true });
 
-export default mongoose.model("Teacher", teacherSchema);
+const Teacher = mongoose.model("Teacher", teacherSchema);
+export default Teacher;
+
+

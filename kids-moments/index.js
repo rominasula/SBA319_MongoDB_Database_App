@@ -5,7 +5,7 @@ import cors from "cors";
 
 import childRoutes from "./routes/childRoutes.js";
 import momentRoutes from "./routes/momentRoutes.js";
-// import teacherRoutes from "./routes/teacherRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
 
 dotenv.config();
 
