@@ -1,18 +1,27 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDB from "./config/db.js";
+
+import childRoutes from "./routes/childRoutes.js";
 import momentRoutes from "./routes/momentRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
 
 dotenv.config();
-connectDB();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-// Routes
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Error:", err));
+
+app.use("/api/children", childRoutes);
 app.use("/api/moments", momentRoutes);
+app.use("/api/teachers", teacherRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
