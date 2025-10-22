@@ -4,7 +4,7 @@ const momentSchema = new mongoose.Schema(
   {
     childId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "child",
+      ref: "Child",
       required: true,
     },
     photoUrl: { type: String, required: true },
