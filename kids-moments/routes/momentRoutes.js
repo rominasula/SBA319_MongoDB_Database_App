@@ -6,17 +6,7 @@ const router = express.Router();
 // GET all moments
 router.get("/", async (req, res) => {
   try {
-    const moments = await Moment.find().populate("childId");
-    res.json(moments);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// GET moments by child
-router.get("/child/:childId", async (req, res) => {
-  try {
-    const moments = await Moment.find({ childId: req.params.childId });
+    const moments = await Moment.find();
     res.json(moments);
   } catch (err) {
     res.status(500).json({ error: err.message });
